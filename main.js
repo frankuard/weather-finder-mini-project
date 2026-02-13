@@ -13,7 +13,7 @@ async function mainFunction(city_name) {
   const Url = `http://localhost/weather-finder-mini-project-main/connection.php?q=${city_name}`
   if (navigator.onLine) {
   const res = await fetch(Url);
-  const data = await res.json();
+  data = await res.json();
     
   localStorage.setItem(city_name, JSON.stringify(data));
   }
@@ -21,7 +21,7 @@ async function mainFunction(city_name) {
     else {
     data = JSON.parse(localStorage.getItem(city_name));
   }
-loader.style.display = "None";
+loader.style.display = "none";
   if (!data) {
     weatherinfo.innerHTML = `
         <div class="header">
@@ -96,6 +96,7 @@ searchbtn.addEventListener("click", () => {
   }
   mainFunction(text);
 });
+
 
 
 
