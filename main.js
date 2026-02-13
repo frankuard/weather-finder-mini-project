@@ -6,12 +6,29 @@ const weatherinfo = document.querySelector(".weatherinfo")
 
 
 async function mainFunction(city_name) {
-
+  let data;
+  try{
+  const loader = document.getElementById("loading");
+  loader.style.display = "block";
+  if (navigator.onLine) {
   const Url = `http://localhost/Prototype2/connection.php?q=${city_name}`
   const res = await fetch(Url);
   const data = await res.json();
+  localStorage.setItem(city_name, JSON.stringify(data));
+  }
 
-
+    else {
+    data = JSON.parse(localStorage.getItem(city_name));
+  }
+loader.style.display = "None";
+  if (!data) {
+    weatherinfo.innerHTML = `
+        <div class="header">
+          <h1 class="city" id="error">No offline data available</h1>
+        </div>`;
+    return;
+  }
+    
   if (data.error) {
     weatherinfo.innerHTML = `<div class="header"> <h1 class="city" id="error">No City Found</h1> </div> `;
     return;
@@ -56,8 +73,14 @@ async function mainFunction(city_name) {
 
 </div>`;
 }
-
-
+catch(err){
+  console.error(err)
+  weatherinfo.innerHTML = `<div class="header"> 
+      <h1 class="city" id="error">Error fetching weather data</h1> 
+      <p>${err.message}</p>
+    </div>`
+}
+}
 window.addEventListener("DOMContentLoaded", () => {
 
   mainFunction("Biratnagar");
@@ -72,3 +95,4 @@ searchbtn.addEventListener("click", () => {
   }
   mainFunction(text);
 });
+
