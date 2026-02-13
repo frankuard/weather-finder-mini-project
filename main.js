@@ -10,7 +10,7 @@ async function mainFunction(city_name) {
   try{
   const loader = document.getElementById("loading");
   loader.style.display = "block";
-  const Url = `http://localhost/Prototype2/connection.php?q=${city_name}`
+  const Url = `http://localhost/weather-finder-mini-project-main/connection.php?q=${city_name}`
   if (navigator.onLine) {
   const res = await fetch(Url);
   const data = await res.json();
@@ -96,5 +96,6 @@ searchbtn.addEventListener("click", () => {
   }
   mainFunction(text);
 });
+
 
 
