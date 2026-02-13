@@ -1,5 +1,4 @@
 
-const API_KEY = "ea3af175a54d9a343657b1de3aab08b4"
 const searchbtn = document.getElementById("search")
 const inputbox = document.getElementById("input")
 const weatherinfo = document.querySelector(".weatherinfo")
@@ -96,6 +95,7 @@ searchbtn.addEventListener("click", () => {
   }
   mainFunction(text);
 });
+
 
 
 
