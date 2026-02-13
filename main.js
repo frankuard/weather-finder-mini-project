@@ -10,10 +10,11 @@ async function mainFunction(city_name) {
   try{
   const loader = document.getElementById("loading");
   loader.style.display = "block";
-  if (navigator.onLine) {
   const Url = `http://localhost/Prototype2/connection.php?q=${city_name}`
+  if (navigator.onLine) {
   const res = await fetch(Url);
   const data = await res.json();
+    
   localStorage.setItem(city_name, JSON.stringify(data));
   }
 
@@ -95,4 +96,5 @@ searchbtn.addEventListener("click", () => {
   }
   mainFunction(text);
 });
+
 
