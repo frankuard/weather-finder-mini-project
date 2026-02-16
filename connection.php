@@ -79,7 +79,7 @@ exit;
 
 }
 
-$API_KEY = "ea3af175a54d9a343657b1de3aab08b4";
+$API_KEY = "Your_Api_Key";
 $url = "https://api.openweathermap.org/data/2.5/weather?q=$cityName&appid=$API_KEY&units=metric";
  $response = @file_get_contents($url);
 $data = json_decode($response, true); 
@@ -115,5 +115,6 @@ $row = mysqli_fetch_assoc($result);
 
 echo json_encode($row);
 ?>
+
 
     
